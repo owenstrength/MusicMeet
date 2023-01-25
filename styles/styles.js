@@ -18,35 +18,41 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 32,
         fontWeight: "bold",
-        marginLeft: 32,
-        marginBottom: 32,
+        marginLeft: 20,
+        marginBottom: 20,
     },
     headingText: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: "bold",
-        marginLeft: 32,
+        marginLeft: 20,
         marginBottom: 20,
     },
     genreText: {
         color: 'white',
         fontSize: 14,
         fontWeight: "bold",
-        marginLeft: 32,
-        marginBottom: 32,
-        //backgroundColor: "#323232", //323232
+        marginLeft: 20,
+        marginBottom: 20,
+        backgroundColor: "#323232", //323232
         borderRadius: 8,
-        borderWidth: "4%",
-        borderColor: "#323232"
+        borderWidth: "2%",
+        borderColor: "#323232",
     },
     images: {
-        height: 100,
-        width: 100,
+        height: 120,
+        width: 120,
         borderRadius: 20,
         marginLeft: 20,
         marginRight: 20,
         marginBottom: 20,
-    }
+    },
+    bottomBar: {
+      height: 100,
+      borderRadius: 20,
+      backgroundColor: '#121212',
+  },
+
   });
   
 export default styles;
