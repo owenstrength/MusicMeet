@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Dimensions} from 'react-native';
+
+const screenWidth = Dimensions.get("screen").width;
 
 const styles = StyleSheet.create({
     container: {
@@ -16,18 +18,28 @@ const styles = StyleSheet.create({
       },
     name: {
         color: 'white',
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: "bold",
         marginLeft: 20,
         marginBottom: 20,
+        marginTop: 20,
     },
     headingText: {
         color: 'white',
         fontSize: 20,
         fontWeight: "bold",
         marginLeft: 20,
-        marginBottom: 20,
+        marginTop: 10,
+        marginBottom: 10,
     },
+    settingsText: {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: "600",
+      marginLeft: 20,
+      marginTop: 10,
+      marginBottom: 10,
+  },
     genreText: {
         color: 'white',
         fontSize: 14,
@@ -51,6 +63,12 @@ const styles = StyleSheet.create({
       height: 100,
       borderRadius: 20,
       backgroundColor: '#121212',
+  },
+  button: {
+    width: screenWidth,
+    alignItems: 'left',
+    justifyContent: "flex-start",
+    backgroundColor: '#121212',
   },
 
   });

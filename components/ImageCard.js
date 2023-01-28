@@ -3,7 +3,7 @@ import React from 'react'
 
 import styles from "../styles/styles"
 
-const ImageCard = ({imageUri}) => {
+const ImageCard = ({imageUri, Rank, Name}) => {
   return (
     <View>
       <Image source={{uri: imageUri}} style={styles.images}></Image>

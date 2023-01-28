@@ -4,9 +4,16 @@ import React from 'react'
 import styles from "../styles/styles"
 import ImageCard from '../components/ImageCard';
 
-const MainScreen = () => {
+const MeetScreen = () => {
   const screenWidth = Dimensions.get("window").width;
   const temp = "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa";
+
+  // data will be in a seperate file. data will be a funcotin that fetches from 
+  // the mongo database uing graph ql and apollo. could just send a REST call to 
+  // mongo but scalability calls for graph ql.
+
+  // login in with spotify. if email in database - assign data
+  // if email not in database add to database
 
   const ARTIST_DATA = [
     {
@@ -58,7 +65,7 @@ const MainScreen = () => {
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
-        <Text style={styles.name} >User.name</Text>
+        <Text style={styles.name} >New User.name</Text>
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
             <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{width:screenWidth}} disableIntervalMomentum={true} pagingEnabled={true}>
@@ -98,4 +105,4 @@ const MainScreen = () => {
   )
 }
 
-export default MainScreen
+export default MeetScreen
