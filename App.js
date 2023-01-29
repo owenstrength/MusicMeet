@@ -6,6 +6,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Provider, useSelector } from "react-redux";
 import { store } from "./redux";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import MainScreen from "./screens/MainScreen.js"
@@ -17,6 +18,7 @@ import styles from "./styles/styles.js"
 import { getData } from "./utils/storage.js";
 
 const Tab = createMaterialBottomTabNavigator();
+
 
 function MyTabs() {
     return (
@@ -54,15 +56,17 @@ export default function App() {
       setIsAuthenticated(true);
     }
   };
+
+
   return (
     <Provider store={store}>
+      <NavigationContainer>
         {!isAuthenticated ? (
           <Login></Login>
         ) : ( 
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+        <MyTabs />
         )}
+        </NavigationContainer>
       </Provider>
   );
 }

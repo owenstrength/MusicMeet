@@ -3,13 +3,15 @@ import { useEffect } from 'react'
 import { ResponseType, useAuthRequest } from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
+import { storeData } from "../utils/storage";
 import { getCurrentUser } from "../redux/slices/user";
 
-const CLIENT_ID = process.env.CLIENT_ID
-const CLIENT_SECRET = process.env.CLIENT_SECRET
+var CLIENT_ID = process.env.CLIENT_ID
+var CLIENT_SECRET = process.env.CLIENT_SECRET
+
+AsyncStorage.clear();
 
 const Login  = ({navigation}) => {
-
   const dispatch = useDispatch();
 
   const discovery = {
@@ -33,7 +35,7 @@ const Login  = ({navigation}) => {
         "user-read-private",
       ],
       usePKCE: false,
-      redirectUri: "exp://127.0.0.1:19000/",
+      redirectUri: "exp://192.168.1.64:19000",
     },
     discovery
   );
@@ -43,7 +45,7 @@ const Login  = ({navigation}) => {
       const { access_token } = response.params;
       storeData("@access_token", access_token);
       dispatch(getCurrentUser());
-      navigation.navigate("Home", { screen: "Home" });
+      navigation.navigate("MainScreen", { screen: "MainScreen" });
     }
   }, [response]);
 
@@ -52,7 +54,12 @@ const Login  = ({navigation}) => {
     return (
        <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <TouchableOpacity onPress={() => promptAsync()}>
-        <View>
+        <View style={{
+            backgroundColor: "green",
+            padding: 20,
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
           <Text>Login</Text>
         </View>
       </TouchableOpacity>
