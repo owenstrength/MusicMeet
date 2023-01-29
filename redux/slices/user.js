@@ -34,13 +34,13 @@ export const getCurrentUser = () => {
   return async (dispatch) => {
     dispatch(getUser());
     try {
-      const response = await axiosInstance.get("/v1/me");
+      const response = await axiosInstance.get("/me");
       storeData("@userData", JSON.stringify(response.data));
       storeData("@userid", response.data.id);
       getUserSuccess(response.data);
       return response.data;
     } catch (error) {
-      console.log("Error", error);
+      console.log("Error USER.JS", error);
     }
   };
 };

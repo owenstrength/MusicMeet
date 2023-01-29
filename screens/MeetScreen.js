@@ -66,6 +66,7 @@ const MeetScreen = () => {
     <SafeAreaView style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
         <Text style={styles.name} >New User.name</Text>
+        <Text style={styles.headingText}>Socials</Text>
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
             <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{width:screenWidth}} disableIntervalMomentum={true} pagingEnabled={true}>
@@ -98,7 +99,7 @@ const MeetScreen = () => {
             {/* User Chosen Playlist*/}
         <Text style={styles.headingText}>User.name's playlist</Text>
             {/* User Chosen Socials*/}
-        <Text style={styles.headingText}>Socials</Text>
+        
         
         </ScrollView>
     </SafeAreaView>

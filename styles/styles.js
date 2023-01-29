@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#121212',
-      alignItems: 'left',
-      justifyContent: 'top',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     subContainer: {
         flex: 1,
@@ -69,6 +69,29 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     justifyContent: "flex-start",
     backgroundColor: '#121212',
+  },
+  text: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  mainText: {
+    color: 'white',
+    fontSize: 36,
+    fontWeight: "bold",
+    marginTop: 0,
+    marginBottom: 20,
+  },
+  subText: {
+    color: 'white',
+    fontSize: 24,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginHorizontal: 50,
+    marginTop: 10,
+    marginBottom: "120%",
   },
 
   });

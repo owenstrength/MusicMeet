@@ -18,6 +18,7 @@ import styles from "./styles/styles.js"
 import { getData } from "./utils/storage.js";
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 
 function MyTabs() {
@@ -28,6 +29,7 @@ function MyTabs() {
         inactiveColor="white"
         tabBarColor="#323232"
         tabBarBadge="2"
+        screenOptions={{ tabBarStyle: {}}}
         >
         <Tab.Screen name="Home" options={{ headerShown: false, 
               tabBarIcon: ({ color }) => (
@@ -42,6 +44,16 @@ function MyTabs() {
         )
       }
   
+
+function MainStack() {
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={Login}></Stack.Screen>
+      <Stack.Screen name="Home" component={MyTabs}></Stack.Screen>
+      <Stack.Screen name="Settings" component={Settings}></Stack.Screen>
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -61,11 +73,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {!isAuthenticated ? (
-          <Login></Login>
-        ) : ( 
-        <MyTabs />
-        )}
+        <MainStack></MainStack>
         </NavigationContainer>
       </Provider>
   );

@@ -91,7 +91,13 @@ const MainScreen = () => {
             {/* User Chosen Playlist*/}
         <Text style={styles.headingText}>User.name's playlist</Text>
             {/* User Chosen Socials*/}
-        <Text style={styles.headingText}>Socials</Text>
+        <Text style={styles.headingText}>Stats</Text>
+        <Text style={styles.headingText}>Build stats cards. like listening time, favorite song, last maybe link to discover more music?</Text>
+        <Text style={styles.headingText}>.</Text>
+        <Text style={styles.headingText}>.</Text>
+        <Text style={styles.headingText}>.</Text>
+        <Text style={styles.headingText}>.</Text>
+        <Text style={styles.headingText}>.</Text>
         
         </ScrollView>
     </SafeAreaView>
