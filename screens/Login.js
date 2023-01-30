@@ -12,7 +12,6 @@ const screenWidth = Dimensions.get("screen").width;
 var CLIENT_ID = process.env.CLIENT_ID
 var CLIENT_SECRET = process.env.CLIENT_SECRET
 
-AsyncStorage.clear();
 
 const Login  = ({navigation}) => {
   const dispatch = useDispatch();
@@ -46,11 +45,15 @@ const Login  = ({navigation}) => {
   useEffect(() => {
 
     if (response?.type === "success") {
+      console.log(response)
       const { access_token } = response.params;
+      console.log(access_token)
       storeData("@access_token", access_token).then(() => {
-        dispatch(getCurrentUser());
+        dispatch(getCurrentUser()).then(() => {
+          navigation.navigate("Home");
+        });
       })
-      navigation.navigate("Home");
+      
     }
   }, [response]);
 

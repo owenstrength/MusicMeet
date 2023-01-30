@@ -41,6 +41,7 @@ export const getCurrentUser = () => {
       return response.data;
     } catch (error) {
       console.log("Error USER.JS", error);
+      console.log(error.response.data)
     }
   };
 };

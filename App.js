@@ -16,6 +16,7 @@ import Login from './screens/Login.js';
 import styles from "./styles/styles.js"
 
 import { getData } from "./utils/storage.js";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,32 +49,46 @@ function MyTabs() {
 function MainStack() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={Login}></Stack.Screen>
       <Stack.Screen name="Home" component={MyTabs}></Stack.Screen>
+      <Stack.Screen name="Login" component={Login}></Stack.Screen>
       <Stack.Screen name="Settings" component={Settings}></Stack.Screen>
     </Stack.Navigator>
   )
 }
 
 export default function App() {
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  
   const fetchUser = async () => {
-    const user = await getData("@access_token");
+    await getData("@access_token")
+    .then(data => data)
+    .then(user => {
+      console.log("yourKey Value:  " + user)
+    
     if (!user) {
       setIsAuthenticated(false);
     } else {
       setIsAuthenticated(true);
     }
+    })
   };
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
 
   return (
     <Provider store={store}>
       <NavigationContainer>
+        {!isAuthenticated ? ( 
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Login" component={Login}></Stack.Screen>
+          <Stack.Screen name="Home" component={MyTabs}></Stack.Screen>
+          </Stack.Navigator>
+        ) : ( 
         <MainStack></MainStack>
+        )}
         </NavigationContainer>
       </Provider>
   );

@@ -1,12 +1,30 @@
 import { View, Text, SafeAreaView, ScrollView, Dimensions, FlatList } from 'react-native'
 import React from 'react'
+import { getData } from '../utils/storage';
+import { useState } from 'react';
+
 
 import styles from "../styles/styles"
 import ImageCard from '../components/ImageCard';
+import { getCurrentUser } from '../redux/slices/user';
+
+
 
 const MainScreen = () => {
+
+  const [UserName, SetUserName] = useState(null);
+
+    const fetchData = async () => {
+      const data = await getData('@userData');
+      return data
+    }
+    fetchData().then((data) => 
+      SetUserName(JSON.parse(data).display_name)
+    );
+
   const screenWidth = Dimensions.get("window").width;
   const temp = "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa";
+
 
   const ARTIST_DATA = [
     {
@@ -58,7 +76,7 @@ const MainScreen = () => {
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
-        <Text style={styles.name} >User.name</Text>
+        <Text style={styles.name} >Hey {UserName}</Text>
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
             <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{width:screenWidth}} disableIntervalMomentum={true} pagingEnabled={true}>
