@@ -7,11 +7,21 @@ import styles from "../styles/styles"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Settings = ({navigation}) => {
+
+  const fetchUser = async () => {
+    await getData("@userid")
+    .then(data => data)
+    .then(user => {
+      console.log("Value:  " + user)
+   })
+  };
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.name}>Settings</Text>
         <ScrollView bounces={false}>
-          <TouchableHighlight underlayColor="white" onPress={() => { let data = AsyncStorage.getAllKeys(); console.log(data);}}>
+          <TouchableHighlight underlayColor="white" onPress={() => { fetchUser();}}>
             <View style={styles.button}>
               <Text style={styles.settingsText}>Account</Text>
             </View>
