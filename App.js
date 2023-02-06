@@ -32,7 +32,7 @@ function MyTabs() {
         tabBarBadge="2"
         screenOptions={{ tabBarStyle: {}}}
         >
-        <Tab.Screen name="Home" options={{ headerShown: false, 
+        <Tab.Screen name="Main" options={{ headerShown: false, 
               tabBarIcon: ({ color }) => (
               <MaterialCommunityIcons name="home" color={color} size={26} />)}}  component={MainScreen} />
         <Tab.Screen name="Meet" options={{ headerShown: false, 
@@ -84,7 +84,7 @@ export default function App() {
         {!isAuthenticated ? ( 
           <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Login" component={Login}></Stack.Screen>
-          <Stack.Screen name="MyTabs" component={MyTabs}></Stack.Screen>
+          <Stack.Screen name="Home" component={MyTabs}></Stack.Screen>
           </Stack.Navigator>
         ) : ( 
         <MainStack></MainStack>

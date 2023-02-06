@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView, Dimensions, FlatList } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Dimensions, FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import { getData } from '../utils/storage';
 import { useState } from 'react';
@@ -6,76 +6,67 @@ import { useState } from 'react';
 
 import styles from "../styles/styles"
 import ImageCard from '../components/ImageCard';
-import { getCurrentUser } from '../redux/slices/user';
+import { getCurrentUser, getCurrentUserTopArtist, getCurrentUserTopSongs } from '../redux/slices/user';
+import { useDispatch } from 'react-redux';
 
 
 
 const MainScreen = () => {
 
+  const dispatch = useDispatch();
   const [UserName, SetUserName] = useState(null);
+  const [ArtistData, SetArtistData] = useState(null);
+  const [SongData, SetSongData] = useState(null);
 
     const fetchData = async () => {
-      const data = await getData('@userData');
-      return data
-    }
-    fetchData().then((data) => 
-      SetUserName(JSON.parse(data).display_name)
-    );
+      const data = await getData('@userData').then((data) => {
+        SetUserName(JSON.parse(data).display_name)
+        dispatch(getCurrentUserTopArtist()).then(() => {
+          console.log("TOP ARTISTS FETCHED")
+          dispatch(getCurrentUserTopSongs()).then(() => {
+            console.log("TOP SONGS FETCHED")
+          })
+        })
+        })
+        return data
+      };
+      
+    
+    fetchData();
 
   const screenWidth = Dimensions.get("window").width;
   const temp = "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa";
 
 
-  const ARTIST_DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-      image: "https://i.scdn.co/image/ab6761610000e5ebfc9d2abc85b6f4bef77f80ea"
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-      image: 'https://i.scdn.co/image/ab6761610000e5ebfc9d2abc85b6f4bef77f80ea',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-      image: 'https://i.scdn.co/image/ab6761610000e5ebfc9d2abc85b6f4bef77f80ea',
-    },
-    {
-      id: '58694a0f-4da1-471f-bd96-145871e29d72',
-      title: 'Fourth Item',
-      image: 'https://i.scdn.co/image/ab6761610000e5ebfc9d2abc85b6f4bef77f80ea',
-    },
-  ];
 
-  const SONG_DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-      image: "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa"
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-      image: "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa",
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-      image: "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa",
-    },
-    {
-      id: '58694a0f-4da1-471f-bd96-145871e29d72',
-      title: 'Fourth Item',
-      image: "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa",
-    },
-  ];
+  const fetchArtists = async () => {
+    const data = await getData('@userTopArtists').then((data) => {
+      SetArtistData(JSON.parse(data))
+      console.log("artist set")
+      })
+      return data
+    };
+
+    if (ArtistData == null) {
+      fetchArtists();
+    }
+
+    const fetchSongs = async () => {
+      const data = await getData('@userTopSongs').then((data) => {
+        SetSongData(JSON.parse(data))
+        console.log("song set")
+        })
+        return data
+      };
   
+      if (SongData == null) {
+        fetchSongs();
+      }
+
 
   return (
-    <SafeAreaView style={styles.container} >
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
         <Text style={styles.name} >Hey {UserName}</Text>
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
@@ -87,23 +78,23 @@ const MainScreen = () => {
                 <Text style={styles.genreText}>Genre</Text>
             </ScrollView>
             {/*Artist Display Section */}
-        <Text style={styles.headingText}>Top Artists Past 4 Weeks</Text>
+        <Text style={styles.headingText}>Top Artists</Text>
             <FlatList 
             horizontal={true} 
             showsHorizontalScrollIndicator={false} 
             //contentContainerStyle={{width:screenWidth}}
-            data={ARTIST_DATA}
-            renderItem={({item}) => <ImageCard imageUri={item.image}></ImageCard>}
+            data={ArtistData}
+            renderItem={({item}) => <ImageCard imageUri={item.images[0].url} Name={item.name} Link={item.external_urls.spotify}></ImageCard>}
             keyExtractor={item => item.id}
             />
             {/*Song Display Section */}
-        <Text style={styles.headingText}>Top Songs Past 4 Weeks</Text>
+        <Text style={styles.headingText}>Top Songs</Text>
         <FlatList 
             horizontal={true} 
             showsHorizontalScrollIndicator={false} 
             //contentContainerStyle={{width:screenWidth}}
-            data={SONG_DATA}
-            renderItem={({item}) => <ImageCard imageUri={item.image}></ImageCard>}
+            data={SongData}
+            renderItem={({item}) => <ImageCard imageUri={item.album.images[0].url} Name={item.name} Artist={item.album.artists[0].name} Rank={item.index} Link={item.external_urls.spotify}></ImageCard>}
             keyExtractor={item => item.id}
             />
             {/* User Chosen Playlist*/}

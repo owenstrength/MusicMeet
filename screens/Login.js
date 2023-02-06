@@ -4,7 +4,7 @@ import { ResponseType, useAuthRequest } from "expo-auth-session";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
 import { getData, storeData } from "../utils/storage";
-import { getCurrentUser } from "../redux/slices/user";
+import { getCurrentUser, getCurrentUserTopArtist } from "../redux/slices/user";
 
 import styles from "../styles/styles"
 const screenWidth = Dimensions.get("screen").width;
@@ -50,7 +50,9 @@ const Login  = ({navigation}) => {
       console.log(access_token)
       storeData("@access_token", access_token).then(() => {
         dispatch(getCurrentUser()).then(() => {
-          navigation.navigate("Home");
+          dispatch(getCurrentUserTopArtist()).then(() => {
+            navigation.navigate("Home");
+          });
         });
       })
       

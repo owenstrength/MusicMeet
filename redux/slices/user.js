@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { storeData } from "../../utils/storage";
+import { logOut, storeData } from "../../utils/storage";
 import axiosInstance from "../../services/axiosInterceptor";
 
 
@@ -41,7 +41,48 @@ export const getCurrentUser = () => {
       return response.data;
     } catch (error) {
       console.log("Error USER.JS", error);
-      console.log(error.response.data)
+      console.log(error.status)
+      if (error.response.status == 401) {
+        logOut();
+      }
+    }
+  };
+};
+
+export const getCurrentUserTopArtist = () => {
+  return async (dispatch) => {
+    dispatch(getUser());
+    try {
+      const response = await axiosInstance.get("/me/top/artists");
+      storeData("@userTopArtists", JSON.stringify(response.data.items));
+      getUserSuccess(response.data);
+      return response.data;
+    } catch (error) {
+      console.log("Error USER.JS", error);
+      console.log(error.response.status)
+      if (error.response.status == 401) {
+        logOut();
+      }
+    
+    }
+  };
+};
+
+export const getCurrentUserTopSongs = () => {
+  return async (dispatch) => {
+    dispatch(getUser());
+    try {
+      const response = await axiosInstance.get("/me/top/tracks");
+      storeData("@userTopSongs", JSON.stringify(response.data.items));
+      getUserSuccess(response.data);
+      return response.data;
+    } catch (error) {
+      console.log("Error USER.JS", error);
+      console.log(error.response.status)
+      if (error.response.status == 401) {
+        logOut();
+      }
+    
     }
   };
 };
