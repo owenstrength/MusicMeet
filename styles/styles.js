@@ -107,6 +107,30 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: "120%",
   },
+  statsCard: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#222222',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    width: screenWidth * 0.45,
+    margin: 10,
+    zIndex: 10,
+  },
+  statsText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  statsDataText: {
+    color: '#1DB954',
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop:10,
+  }
 
   });
   

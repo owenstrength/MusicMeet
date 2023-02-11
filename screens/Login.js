@@ -63,7 +63,7 @@ const Login  = ({navigation}) => {
 
     return (
        <SafeAreaView style={styles.container}>
-        <Text style={styles.mainText}>Music Meet</Text>
+        <Text style={styles.mainText}>Wavelength</Text>
         <Text style={styles.subText}>The best way to meet others with the same music taste</Text>
       <TouchableOpacity onPress={() => promptAsync()}>
         <View style={{

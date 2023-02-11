@@ -8,6 +8,7 @@ import styles from "../styles/styles"
 import ImageCard from '../components/ImageCard';
 import { getCurrentUser, getCurrentUserTopArtist, getCurrentUserTopSongs } from '../redux/slices/user';
 import { useDispatch } from 'react-redux';
+import StatsCard from '../components/StatsCard';
 
 
 
@@ -68,6 +69,7 @@ const MainScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
         <Text style={styles.name} >Hey {UserName}</Text>
+        
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
             <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{width:screenWidth}} disableIntervalMomentum={true} pagingEnabled={true}>
@@ -78,6 +80,16 @@ const MainScreen = () => {
                 <Text style={styles.genreText}>Genre</Text>
             </ScrollView>
             {/*Artist Display Section */}
+            <Text style={styles.headingText}>Your Stats</Text>
+        <View style={{flexDirection: "row"}}>
+          <StatsCard Name="Minutes Listened" Data="12382"></StatsCard>
+          <StatsCard Name="Total Streams" Data="283912"></StatsCard>
+        </View>
+
+        <View style={{flexDirection: "row"}}>
+          <StatsCard Name="Different Artists" Data="2314"></StatsCard>
+          <StatsCard Name="Different Tracks" Data="9823"></StatsCard>
+        </View>
         <Text style={styles.headingText}>Top Artists</Text>
             <FlatList 
             horizontal={true} 
@@ -98,10 +110,9 @@ const MainScreen = () => {
             keyExtractor={item => item.id}
             />
             {/* User Chosen Playlist*/}
-        <Text style={styles.headingText}>User.name's playlist</Text>
             {/* User Chosen Socials*/}
-        <Text style={styles.headingText}>Stats</Text>
-        <Text style={styles.headingText}>Build stats cards. like listening time, favorite song, last maybe link to discover more music?</Text>
+        
+        
         <Text style={styles.headingText}>.</Text>
         <Text style={styles.headingText}>.</Text>
         <Text style={styles.headingText}>.</Text>
