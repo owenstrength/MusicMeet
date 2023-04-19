@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { logOut, storeData } from "../../utils/storage";
 import axiosInstance from "../../services/axiosInterceptor";
+import { getData } from "../../utils/storage";
 
 
 const initialState = {
@@ -63,7 +64,7 @@ export const getCurrentUserTopArtist = () => {
       if (error.response.status == 401) {
         logOut();
       }
-    
+
     }
   };
 };
@@ -82,8 +83,38 @@ export const getCurrentUserTopSongs = () => {
       if (error.response.status == 401) {
         logOut();
       }
-    
+
     }
   };
 };
 
+export const getUserTopGenres = (timeRange) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch(getUser());
+
+      const response = await axiosInstance.get("/me/top/artists");
+
+      const artists = response.data.items;
+
+      const genres = {};
+      artists.forEach(artist => {
+        artist.genres.forEach(genre => {
+          if (genre in genres) {
+            genres[genre] += 1;
+          } else {
+            genres[genre] = 1;
+          }
+        });
+      });
+
+      const sortedGenres = Object.entries(genres).sort((a, b) => b[1] - a[1]);
+
+      getUserSuccess(response.data);
+      storeData("@userTopGenres", JSON.stringify(sortedGenres.slice(0, 5).map(genre => genre[0])));
+      return sortedGenres.slice(0, 5).map(genre => genre[0]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};

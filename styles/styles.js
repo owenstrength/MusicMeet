@@ -1,82 +1,78 @@
-import { StyleSheet , Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get("screen").width;
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#121212',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    subContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: '#121212',
-        alignItems: 'left',
-        justifyContent: 'top',
-      },
-    name: {
-        color: 'white',
-        fontSize: 28,
-        fontWeight: "bold",
-        marginLeft: 20,
-        marginBottom: 20,
-        marginTop: 20,
-    },
-    headingText: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: "bold",
-        marginLeft: 20,
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    cardText: {
-      color: 'white',
-      textShadowRadius: 5,
-      textShadowColor: "black",
-      fontSize: 14,
-      fontWeight: "bold",
-      marginLeft: 30,
-      marginRight: 10,
-      marginTop: -15,
-      zIndex: 100,
-      width: 130,
-      textAlign: 'center',
+  container: {
+    flex: 1,
+    backgroundColor: '#121212',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-    settingsText: {
-      color: 'white',
-      fontSize: 20,
-      fontWeight: "600",
-      marginLeft: 20,
-      marginTop: 10,
-      marginBottom: 10,
+  subContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#121212',
+    alignItems: 'left',
+    justifyContent: 'top',
   },
-    genreText: {
-        color: 'white',
-        fontSize: 14,
-        fontWeight: "bold",
-        marginLeft: 20,
-        marginBottom: 20,
-        backgroundColor: "#323232", //323232
-        borderRadius: 8,
-        borderWidth: "2%",
-        borderColor: "#323232",
-    },
-    images: {
-        height: 150,
-        width: 150,
-        borderRadius: 20,
-        marginLeft: 20,
-        marginRight: 10,
-        marginBottom: 20,
-        marginTop: 10,
-    },
-    bottomBar: {
-      height: 100,
-      borderRadius: 20,
-      backgroundColor: '#121212',
+  name: {
+    color: 'white',
+    fontSize: 32,
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  headingText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  cardText: {
+    color: 'white',
+    textShadowRadius: 5,
+    textShadowColor: "black",
+    fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: 30,
+    marginRight: 10,
+    marginTop: -15,
+    zIndex: 100,
+    width: 130,
+    textAlign: 'center',
+  },
+  settingsText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: "600",
+    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  genreText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  images: {
+    height: 150,
+    width: 150,
+    borderRadius: 20,
+    marginLeft: 20,
+    marginRight: 10,
+    marginBottom: 20,
+    marginTop: 10,
+  },
+  bottomBar: {
+    height: 100,
+    borderRadius: 20,
+    backgroundColor: '#121212',
   },
   button: {
     width: screenWidth,
@@ -118,6 +114,19 @@ const styles = StyleSheet.create({
     margin: 10,
     zIndex: 10,
   },
+  genreCard: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#222222',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginVertical: 10,
+    marginLeft: 10,
+    marginRight: -5,
+    zIndex: 10,
+  },
   statsText: {
     color: 'white',
     fontSize: 16,
@@ -129,9 +138,9 @@ const styles = StyleSheet.create({
     color: '#1DB954',
     fontSize: 20,
     fontWeight: "bold",
-    marginTop:10,
+    marginTop: 10,
   }
 
-  });
-  
+});
+
 export default styles;

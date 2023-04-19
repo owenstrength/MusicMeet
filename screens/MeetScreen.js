@@ -60,48 +60,48 @@ const MeetScreen = () => {
       image: "https://i.scdn.co/image/ab67616d0000b2733db28ea90ddea7e6b333b4aa",
     },
   ];
-  
+
 
   return (
     <SafeAreaView style={styles.container} >
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }} >
-        <Text style={styles.name} >New User.name</Text>
+        <Text style={styles.name} >Meet User.name</Text>
         <Text style={styles.headingText}>Socials</Text>
         {/*Genre Display Section */}
         <Text style={styles.headingText}>Top Genres</Text>
-            <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{width:screenWidth}} disableIntervalMomentum={true} pagingEnabled={true}>
-                <Text style={styles.genreText}>Genre</Text>
-                <Text style={styles.genreText}>Genre</Text>
-                <Text style={styles.genreText}>Genre</Text>
-                <Text style={styles.genreText}>Genre</Text>
-                <Text style={styles.genreText}>Genre</Text>
-            </ScrollView>
-            {/*Artist Display Section */}
-        <Text style={styles.headingText}>Top Artists Past 4 Weeks</Text>
-            <FlatList 
-            horizontal={true} 
-            showsHorizontalScrollIndicator={false} 
-            //contentContainerStyle={{width:screenWidth}}
-            data={ARTIST_DATA}
-            renderItem={({item}) => <ImageCard imageUri={item.image}></ImageCard>}
-            keyExtractor={item => item.id}
-            />
-            {/*Song Display Section */}
-        <Text style={styles.headingText}>Top Songs Past 4 Weeks</Text>
-        <FlatList 
-            horizontal={true} 
-            showsHorizontalScrollIndicator={false} 
-            //contentContainerStyle={{width:screenWidth}}
-            data={SONG_DATA}
-            renderItem={({item}) => <ImageCard imageUri={item.image}></ImageCard>}
-            keyExtractor={item => item.id}
-            />
-            {/* User Chosen Playlist*/}
-        <Text style={styles.headingText}>User.name's playlist</Text>
-            {/* User Chosen Socials*/}
-        
-        
+        <ScrollView horizontal={true} bar showsHorizontalScrollIndicator={false} contentContainerStyle={{ width: screenWidth }} disableIntervalMomentum={true} pagingEnabled={true}>
+          <Text style={styles.genreText}>Genre</Text>
+          <Text style={styles.genreText}>Genre</Text>
+          <Text style={styles.genreText}>Genre</Text>
+          <Text style={styles.genreText}>Genre</Text>
+          <Text style={styles.genreText}>Genre</Text>
         </ScrollView>
+        {/*Artist Display Section */}
+        <Text style={styles.headingText}>Top Artists Past 4 Weeks</Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          //contentContainerStyle={{width:screenWidth}}
+          data={ARTIST_DATA}
+          renderItem={({ item }) => <ImageCard imageUri={item.image}></ImageCard>}
+          keyExtractor={item => item.id}
+        />
+        {/*Song Display Section */}
+        <Text style={styles.headingText}>Top Songs Past 4 Weeks</Text>
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          //contentContainerStyle={{width:screenWidth}}
+          data={SONG_DATA}
+          renderItem={({ item }) => <ImageCard imageUri={item.image}></ImageCard>}
+          keyExtractor={item => item.id}
+        />
+        {/* User Chosen Playlist*/}
+        <Text style={styles.headingText}>User.name's playlist</Text>
+        {/* User Chosen Socials*/}
+
+
+      </ScrollView>
     </SafeAreaView>
   )
 }
