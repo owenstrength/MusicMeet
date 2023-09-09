@@ -1,7 +1,5 @@
 # Music Meet
 
-![Music Meet Logo](https://example.com/musicmeet-logo.png)
-
 Music Meet is a mobile application that connects music enthusiasts by analyzing their listening data and matching users with similar music tastes. With Music Meet, you can discover like-minded individuals who share your musical interests and expand your musical horizons.
 
 ## Features
